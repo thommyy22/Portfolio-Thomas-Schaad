@@ -1,0 +1,402 @@
+/* ---------- GLOBAL ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* ---------- ONBOARDING ---------- */
+.onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #c6ccb2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease;
+}
+
+.intro-words div {
+  color: #fff;
+  font-size: 24px;
+  opacity: 0;
+  animation: fadeWord 0.7s forwards;
+  text-align: center;
+}
+
+.intro-words div:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.intro-words div:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.intro-words div:nth-child(3) {
+  animation-delay: 1s;
+}
+.intro-words div:nth-child(4) {
+  animation-delay: 1.4s;
+}
+
+@keyframes fadeWord {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 👉 p5 canvas layer */
+#onboarding-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* 👉 Text darüber */
+.intro-words {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- TOPBAR ---------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background: #168b37;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  z-index: 1000;
+  transition: background-color 0.6s ease;
+}
+
+.topbar a,
+.topbar span {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+/* MITTE */
+.view-toggle {
+  display: flex;
+  gap: 6px;
+
+  font-size: 14px;
+  color: white;
+}
+
+.toggle {
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.toggle.active {
+  opacity: 1;
+}
+
+.divider {
+  opacity: 0.5;
+}
+
+.topbar .home {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* ---------- TITLEBOX ---------- */
+.titlebox {
+  position: fixed;
+  top: 30px;
+  width: 100%;
+  height: 120px;
+  background: white;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+  z-index: 900;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project {
+  flex: 0 0 100vw;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-left: 16px;
+
+  cursor: pointer; /* ✅ klickbar */
+}
+
+.num {
+  font-size: 12px;
+  transform: translateY(+24px);
+  letter-spacing: 0.12em;
+}
+
+.title {
+  font-size: clamp(28px, 7vw, 90px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- GALLERY ---------- */
+.gallery {
+  position: fixed;
+  top: 150px;
+  width: 100vw;
+  height: calc(100vh - 150px);
+  background: black;
+  transform: scaleX(-1);
+  overflow: hidden;
+}
+
+.gallery-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gallery-item {
+  flex: 0 0 100vw;
+  background-size: cover;
+  background-position: center;
+  transform: scaleX(-1);
+
+  cursor: pointer; /* ✅ klickbar */
+}
+
+/* ---------- ABOUT ---------- */
+.about {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 30px);
+  background: #fff;
+  z-index: 1500;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.about.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* OUTER GRID */
+.about-inner {
+  display: flex;
+  gap: 80px;
+  align-items: center;
+
+  max-width: 1000px;
+  padding: 40px 24px;
+}
+
+/* IMAGE */
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: cover;
+}
+
+/* TEXT SIDE */
+.about-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  text-align: left;
+}
+
+/* TYPO */
+.intro {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.2;
+
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.outro {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.about-image img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: cover;
+
+  border: 1px solid #000;
+}
+.contact {
+  font-size: 12px;
+  margin-top: 0px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  opacity: 0.7;
+}
+
+.contact a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.contact a:hover {
+  border-bottom: 1px solid #000;
+  opacity: 1;
+}
+
+.arrow {
+  font-size: 14px;
+  line-height: 1;
+}
+#about-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-inner {
+  position: relative;
+  z-index: 1;
+}
+/* ---------- PROJECT VIEW ---------- */
+.project-view {
+  position: fixed;
+  overflow-y: scroll;
+
+  top: 30px;
+  left: 0;
+
+  width: 100%;
+  height: calc(100vh - 30px);
+
+  background: white;
+  z-index: 1400;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.4s ease;
+}
+
+.project-view.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.project-content {
+  padding: 0px;
+  max-width: 100%;
+  line-height: 1.6;
+  min-height: 100%;
+}
+
+.project-title {
+  font-size: 32px;
+  margin-bottom: 0px;
+  font-weight: 400;
+  padding: 16px;
+  padding-bottom: 0px;
+  padding-top: 6px;
+}
+
+.project-text {
+  font-size: 14px;
+  padding: 16px;
+  padding-top: 0px;
+  max-width: 80ch;
+}
+/* ---------- PROJECT GALLERY ---------- */
+
+.project-gallery {
+  column-count: 3;
+  column-gap: 0px;
+
+  margin-top: 0px;
+  padding-bottom: 120px;
+  border-top: 1px solid black;
+}
+
+.gallery-media {
+  width: 100%;
+  margin-bottom: 0px;
+
+  break-inside: avoid;
+  display: block;
+
+  border-radius: 0px;
+}
+
+/* VIDEO */
+.gallery-media video,
+video.gallery-media {
+  width: 100%;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .project-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-gallery {
+    column-count: 1;
+  }
+
+  .title {
+    font-size: 52px;
+  }
+}

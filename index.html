@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thomas Schaad</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ONBOARDING -->
+    <section class="onboarding">
+      <div id="onboarding-canvas"></div>
+      <div class="intro-words">
+        <div>Data Design</div>
+        <div>Art</div>
+        <div>Digital</div>
+        <div>Analog</div>
+      </div>
+    </section>
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <span class="home">Thomas Schaad</span>
+      <div class="view-toggle">
+        <span class="toggle active">Gallery</span>
+        <span class="divider">/</span>
+        <span class="toggle">Map</span>
+      </div>
+      <a href="#about" class="about-link">About</a>
+    </header>
+
+    <!-- TITLEBOX -->
+    <section class="titlebox">
+      <div class="track">
+        <div class="project" data-slug="scrollytelling">
+          <div class="num">0001</div>
+          <div class="title">Scrollytelling</div>
+        </div>
+
+        <div class="project" data-slug="sdg09">
+          <div class="num">0002</div>
+          <div class="title">SDG 09</div>
+        </div>
+
+        <div class="project" data-slug="trauma-tank">
+          <div class="num">0003</div>
+          <div class="title">Trauma Tank</div>
+        </div>
+
+        <div class="project" data-slug="data-sculpture">
+          <div class="num">0004</div>
+          <div class="title">Data Sculpture</div>
+        </div>
+
+        <div class="project" data-slug="code-patterns">
+          <div class="num">0005</div>
+          <div class="title">Code Patterns</div>
+        </div>
+
+        <div class="project" data-slug="the-armor">
+          <div class="num">0006</div>
+          <div class="title">The Armor</div>
+        </div>
+
+        <div class="project" data-slug="the-missing-piece">
+          <div class="num">0007</div>
+          <div class="title">The Missing Piece</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery">
+      <div class="gallery-track">
+        <div
+          class="gallery-item"
+          data-slug="scrollytelling"
+          style="background-image: url('images/scrollytelling.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="sdg09"
+          style="background-image: url('images/sdg09.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="trauma-tank"
+          style="background-image: url('images/trauma-tank.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="data-sculpture"
+          style="background-image: url('images/data-sculpture.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="code-patterns"
+          style="background-image: url('images/code-patterns.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="the-armor"
+          style="background-image: url('images/armor.jpg')"
+        ></div>
+
+        <div
+          class="gallery-item"
+          data-slug="the-missing-piece"
+          style="background-image: url('images/missing-piece.jpg')"
+        ></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div id="about-canvas"></div>
+        <div class="about-image">
+          <img src="images/Thomas.jpg" alt="Thomas Schaad" />
+        </div>
+
+        <div class="about-content">
+          <p class="intro">Hi, ich bin Thomas</p>
+
+          <p class="text">
+            Zimmermann, Theologiestudent, Designer und Datenvisualisierer. Ich
+            bewege mich zwischen Handwerk und digitaler Gestaltung – überall
+            dort, wo ästhetische Form entsteht, beginne ich zu denken und zu
+            entwerfen. Daraus entsteht ein vielseitiges Portfolio an
+            konzeptionellen und künstlerischen Arbeiten. Mein gestalterisches
+            Denken arbeitet mit Metaphern, Geschichten und abstrakten Bildern
+            jenseits rein sprachlicher oder rationaler Zugänge. Ich übersetze
+            komplexe Themen – oft aus Daten und Informationen – in sinnliche,
+            nonverbale Formen, die erfahrbar und emotional zugänglich werden.
+          </p>
+
+          <p class="outro">
+            "Im Spannungsfeld zwischen Data Design und Art, Digital und Analog,
+            bin ich zuhause"
+          </p>
+          <p class="contact">
+            <span class="arrow">→</span>
+            <a href="mailto:thom.schaad@proton.me">thom.schaad@proton.me</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT VIEW -->
+    <section class="project-view">
+      <div class="project-content">
+        <h1 class="project-title"></h1>
+        <p class="project-text"></p>
+        <div class="project-gallery"></div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
