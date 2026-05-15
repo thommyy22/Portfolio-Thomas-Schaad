@@ -590,3 +590,65 @@ function drawGridMap() {
     line(0, y, width, y);
   }
 }
+// =====================
+// TOUCH SWIPE MOBILE
+// =====================
+
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener(
+  "touchstart",
+  (e) => {
+    touchStartY = e.changedTouches[0].screenY;
+  },
+  { passive: true }
+);
+
+window.addEventListener(
+  "touchend",
+  (e) => {
+    // 👉 nicht swipen wenn projekt offen
+    if (projectView.classList.contains("active")) return;
+
+    touchEndY = e.changedTouches[0].screenY;
+
+    handleSwipe();
+  },
+  { passive: true }
+);
+
+function handleSwipe() {
+  const diff = touchStartY - touchEndY;
+
+  // 👉 kleine Bewegungen ignorieren
+  if (Math.abs(diff) < 50) return;
+
+  if (isScrolling) return;
+
+  // nach unten swipen
+  if (diff > 0) {
+    index++;
+
+    if (index >= projects.length) {
+      index = 0;
+    }
+  }
+
+  // nach oben swipen
+  else {
+    index--;
+
+    if (index < 0) {
+      index = projects.length - 1;
+    }
+  }
+
+  isScrolling = true;
+
+  update();
+
+  setTimeout(() => {
+    isScrolling = false;
+  }, 1200);
+}

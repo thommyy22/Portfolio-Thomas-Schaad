@@ -185,6 +185,7 @@ body {
 /* ---------- ABOUT ---------- */
 .about {
   position: fixed;
+  overflow-y: auto;
   top: 30px;
   left: 0;
   width: 100%;
@@ -199,6 +200,7 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 .about.active {
@@ -398,5 +400,68 @@ video.gallery-media {
 
   .title {
     font-size: 52px;
+  }
+}
+
+html,
+body {
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+/* =========================
+   ABOUT RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .about {
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
+  .about-inner {
+    flex-direction: column;
+    gap: 32px;
+
+    width: 100%;
+    max-width: 100%;
+
+    padding: 40px 20px 120px 20px;
+  }
+
+  .about-image {
+    width: 100%;
+  }
+
+  .about-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .about-content {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .intro {
+    font-size: clamp(36px, 10vw, 64px);
+    line-height: 0.95;
+  }
+
+  .text {
+    font-size: 14px;
+    line-height: 1.45;
+
+    text-align: left;
+    hyphens: none;
+  }
+
+  .outro {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .contact {
+    padding-bottom: 40px;
   }
 }
