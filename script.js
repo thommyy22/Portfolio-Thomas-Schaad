@@ -322,7 +322,7 @@ const projectData = [
     media: [
       {
         type: "image",
-        src: "images/the-missing-piece-01.jpg",
+        src: "images/missing-piece.jpg",
       },
       {
         type: "image",
