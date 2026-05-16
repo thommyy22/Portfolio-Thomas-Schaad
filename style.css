@@ -1,8 +1,17 @@
-/* ---------- GLOBAL ---------- */
+/* =========================
+   GLOBAL
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: pan-y;
 }
 
 body {
@@ -11,7 +20,9 @@ body {
   overflow: hidden;
 }
 
-/* ---------- ONBOARDING ---------- */
+/* =========================
+   ONBOARDING
+========================= */
 .onboarding {
   position: fixed;
   inset: 0;
@@ -21,6 +32,17 @@ body {
   align-items: center;
   justify-content: center;
   transition: opacity 0.6s ease;
+}
+
+#onboarding-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.intro-words {
+  position: relative;
+  z-index: 2;
 }
 
 .intro-words div {
@@ -54,20 +76,10 @@ body {
     transform: translateY(0);
   }
 }
-/* 👉 p5 canvas layer */
-#onboarding-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
 
-/* 👉 Text darüber */
-.intro-words {
-  position: relative;
-  z-index: 2;
-}
-
-/* ---------- TOPBAR ---------- */
+/* =========================
+   TOPBAR
+========================= */
 .topbar {
   position: fixed;
   top: 0;
@@ -84,46 +96,96 @@ body {
 
 .topbar a,
 .topbar span {
-  color: white;
+  color: #fff;
   font-size: 14px;
   text-decoration: none;
 }
-/* MITTE */
-.view-toggle {
-  display: flex;
-  gap: 6px;
 
+.topbar .home {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Toggle */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  font-size: 14px;
+}
+
+#toggle-label {
+  opacity: 0.9;
+}
+
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
   color: white;
 }
 
 .toggle {
-  opacity: 0.4;
+  width: 46px;
+  height: 22px;
+  border: 1px solid white;
+  border-radius: 999px;
+  position: relative;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  transition: background 0.3s ease;
+}
+.toggle-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+}
+#toggle-label {
+  width: 70px; /* fixiert Layout-Breite */
+  text-align: right;
 }
 
+.toggle-knob {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* aktiv state */
 .toggle.active {
-  opacity: 1;
+  background: rgba(255, 255, 255, 0);
 }
 
-.divider {
-  opacity: 0.5;
+.toggle.active .toggle-knob {
+  transform: translateX(24px);
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid white;
 }
 
-.topbar .home {
-  cursor: pointer;
-  font-weight: 500;
-}
-
-/* ---------- TITLEBOX ---------- */
+/* =========================
+   TITLE STRIP
+========================= */
 .titlebox {
   position: fixed;
   top: 30px;
   width: 100%;
   height: 120px;
-  background: white;
-  border-bottom: 1px solid black;
+  background: #fff;
+  border-bottom: 1px solid #000;
   overflow: hidden;
   z-index: 900;
 }
@@ -140,14 +202,13 @@ body {
   align-items: center;
   gap: 16px;
   padding-left: 16px;
-
-  cursor: pointer; /* ✅ klickbar */
+  cursor: pointer;
 }
 
 .num {
   font-size: 12px;
-  transform: translateY(+24px);
   letter-spacing: 0.12em;
+  transform: translateY(24px);
 }
 
 .title {
@@ -156,15 +217,17 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* ---------- GALLERY ---------- */
+/* =========================
+   GALLERY
+========================= */
 .gallery {
   position: fixed;
   top: 150px;
   width: 100vw;
   height: calc(100vh - 150px);
-  background: black;
-  transform: scaleX(-1);
+  background: #000;
   overflow: hidden;
+  transform: scaleX(-1);
 }
 
 .gallery-track {
@@ -178,14 +241,14 @@ body {
   background-size: cover;
   background-position: center;
   transform: scaleX(-1);
-
-  cursor: pointer; /* ✅ klickbar */
+  cursor: pointer;
 }
 
-/* ---------- ABOUT ---------- */
+/* =========================
+   ABOUT
+========================= */
 .about {
   position: fixed;
-  overflow-y: auto;
   top: 30px;
   left: 0;
   width: 100%;
@@ -200,6 +263,8 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
+
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -208,8 +273,10 @@ body {
   pointer-events: all;
 }
 
-/* OUTER GRID */
 .about-inner {
+  position: relative;
+  z-index: 1;
+
   display: flex;
   gap: 80px;
   align-items: center;
@@ -218,7 +285,14 @@ body {
   padding: 40px 24px;
 }
 
-/* IMAGE */
+#about-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* image */
 .about-image {
   flex: 1;
   display: flex;
@@ -228,22 +302,17 @@ body {
 .about-image img {
   width: 100%;
   max-width: 320px;
-  height: auto;
-  object-fit: cover;
+  border: 1px solid #000;
 }
 
-/* TEXT SIDE */
+/* text */
 .about-content {
   flex: 1;
-
   display: flex;
   flex-direction: column;
   gap: 36px;
-
-  text-align: left;
 }
 
-/* TYPO */
 .intro {
   font-size: 48px;
   font-weight: 500;
@@ -253,10 +322,8 @@ body {
 .text {
   font-size: 14px;
   line-height: 1.2;
-
   text-align: justify;
   hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 .outro {
@@ -265,22 +332,12 @@ body {
   text-transform: uppercase;
   opacity: 0.7;
 }
-.about-image img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  object-fit: cover;
 
-  border: 1px solid #000;
-}
 .contact {
   font-size: 12px;
-  margin-top: 0px;
-
   display: flex;
   align-items: center;
   gap: 8px;
-
   opacity: 0.7;
 }
 
@@ -288,47 +345,31 @@ body {
   color: #000;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, opacity 0.2s ease;
+  transition: 0.2s;
 }
 
 .contact a:hover {
   border-bottom: 1px solid #000;
-  opacity: 1;
 }
 
-.arrow {
-  font-size: 14px;
-  line-height: 1;
-}
-#about-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.about-inner {
-  position: relative;
-  z-index: 1;
-}
-/* ---------- PROJECT VIEW ---------- */
+/* =========================
+   PROJECT VIEW
+========================= */
 .project-view {
   position: fixed;
-  overflow-y: scroll;
-
   top: 30px;
   left: 0;
-
   width: 100%;
   height: calc(100vh - 30px);
 
-  background: white;
+  background: #fff;
   z-index: 1400;
 
   opacity: 0;
   pointer-events: none;
-
   transition: opacity 0.4s ease;
+
+  overflow-y: scroll;
 }
 
 .project-view.active {
@@ -337,56 +378,57 @@ body {
 }
 
 .project-content {
-  padding: 0px;
   max-width: 100%;
   line-height: 1.6;
-  min-height: 100%;
 }
 
 .project-title {
   font-size: 32px;
-  margin-bottom: 0px;
   font-weight: 400;
-  padding: 16px;
-  padding-bottom: 0px;
-  padding-top: 6px;
+  padding: 16px 16px 0;
 }
 
 .project-text {
   font-size: 14px;
-  padding: 16px;
-  padding-top: 0px;
+  padding: 0 16px 16px;
   max-width: 80ch;
 }
-/* ---------- PROJECT GALLERY ---------- */
 
+/* gallery */
+/* .project-gallery {
+  display: masonry;
+  border-top: 1px solid #000;
+} */
+/* .project-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid #000;
+} */
 .project-gallery {
   column-count: 3;
-  column-gap: 0px;
-
-  margin-top: 0px;
+  column-gap: 0;
+  border-top: 1px solid #000;
   padding-bottom: 120px;
-  border-top: 1px solid black;
 }
 
-.gallery-media {
+/* .gallery-media {
   width: 100%;
-  margin-bottom: 0px;
-
-  break-inside: avoid;
   display: block;
-
-  border-radius: 0px;
+  break-inside: avoid;
 }
 
-/* VIDEO */
-.gallery-media video,
-video.gallery-media {
-  width: 100%;
+.gallery-media.large {
+  transform: scale(1.08);
 }
 
-/* RESPONSIVE */
+.gallery-media.xl {
+  transform: scale(1.16);
+} */
 
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 1000px) {
   .project-gallery {
     column-count: 2;
@@ -403,65 +445,30 @@ video.gallery-media {
   }
 }
 
-html,
-body {
-  overscroll-behavior: none;
-  touch-action: pan-y;
-}
-/* =========================
-   ABOUT RESPONSIVE
-========================= */
-
+/* about responsive */
 @media (max-width: 900px) {
   .about {
-    overflow-y: auto;
     align-items: flex-start;
   }
 
   .about-inner {
     flex-direction: column;
     gap: 32px;
-
     width: 100%;
-    max-width: 100%;
-
-    padding: 40px 20px 120px 20px;
-  }
-
-  .about-image {
-    width: 100%;
-  }
-
-  .about-image img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .about-content {
-    width: 100%;
-    gap: 24px;
+    padding: 40px 20px 120px;
   }
 
   .intro {
     font-size: clamp(36px, 10vw, 64px);
-    line-height: 0.95;
   }
 
   .text {
-    font-size: 14px;
-    line-height: 1.45;
-
     text-align: left;
     hyphens: none;
+    line-height: 1.45;
   }
 
   .outro {
     font-size: 12px;
-    line-height: 1.4;
-  }
-
-  .contact {
-    padding-bottom: 40px;
   }
 }
