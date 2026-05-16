@@ -411,8 +411,7 @@ body {
   border-top: 1px solid #000;
   padding-bottom: 120px;
 }
-
-/* .gallery-media {
+.gallery-media {
   width: 100%;
   display: block;
   break-inside: avoid;
@@ -424,7 +423,8 @@ body {
 
 .gallery-media.xl {
   transform: scale(1.16);
-} */
+}
+*/
 
 /* =========================
    RESPONSIVE

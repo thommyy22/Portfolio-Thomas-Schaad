@@ -87,24 +87,24 @@ function renderMap(cols, rows, spacingX, spacingY) {
 // =========================
 // TOGGLE (UI OVERLAY)
 // =========================
-function renderToggle() {
-  const x = width - 120;
-  const y = 10;
+// function renderToggle() {
+//   const x = width - 120;
+//   const y = 10;
 
-  push();
+//   push();
 
-  stroke(0);
-  strokeWeight(1);
+//   stroke(0);
+//   strokeWeight(1);
 
-  fill(isOn ? 0 : 255);
-  rect(x, y, 60, 24, 12);
+//   fill(isOn ? 0 : 255);
+//   rect(x, y, 60, 24, 12);
 
-  noStroke();
-  fill(isOn ? 255 : 0);
-  circle(isOn ? x + 48 : x + 12, y + 12, 18);
+//   noStroke();
+//   fill(isOn ? 255 : 0);
+//   circle(isOn ? x + 48 : x + 12, y + 12, 18);
 
-  pop();
-}
+//   pop();
+// }
 
 // =========================
 // INPUT
@@ -432,15 +432,15 @@ const projectData = [
       },
       {
         type: "image",
+        src: "images/the-armor-02.jpg",
+      },
+      {
+        type: "image",
         src: "images/the-armor-03.jpg",
       },
       {
         type: "image",
         src: "images/the-armor-04.jpg",
-      },
-      {
-        type: "image",
-        src: "images/the-armor-02.jpg",
       },
       {
         type: "image",
@@ -512,20 +512,20 @@ const projectTitle = document.querySelector(".project-title");
 const projectText = document.querySelector(".project-text");
 
 const projectGallery = document.querySelector(".project-gallery");
-const toggle = document.querySelector(".toggle");
-const toggleLabel = document.getElementById("toggle-label");
+// const toggle = document.querySelector(".toggle");
+// const toggleLabel = document.getElementById("toggle-label");
 
-toggle.addEventListener("click", () => {
-  isOn = !isOn;
+// toggle.addEventListener("click", () => {
+//   isOn = !isOn;
 
-  toggle.classList.toggle("active", isOn);
+//   toggle.classList.toggle("active", isOn);
 
-  mode = isOn ? "map" : "gallery";
+//   mode = isOn ? "map" : "gallery";
 
-  toggleLabel.textContent = isOn ? "MAP" : "GALLERY";
+//   toggleLabel.textContent = isOn ? "MAP" : "GALLERY";
 
-  progress = 0;
-});
+//   progress = 0;
+// });
 
 // =====================
 // STATE
