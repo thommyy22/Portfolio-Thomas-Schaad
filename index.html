@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thomas Schaad</title>
+
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <!-- ONBOARDING -->
+    <!-- =========================
+         ONBOARDING
+    ========================== -->
     <section class="onboarding">
       <div id="onboarding-canvas"></div>
+
       <div class="intro-words">
         <div>Data Design</div>
         <div>Art</div>
@@ -19,18 +23,26 @@
       </div>
     </section>
 
-    <!-- HEADER -->
+    <!-- =========================
+         TOPBAR
+    ========================== -->
     <header class="topbar">
       <span class="home">Thomas Schaad</span>
-      <div class="view-toggle">
-        <span class="toggle active">Gallery</span>
-        <span class="divider">/</span>
-        <span class="toggle">Map</span>
+
+      <div class="toggle-wrap">
+        <span id="toggle-label">GALLERY</span>
+
+        <div class="toggle">
+          <div class="toggle-knob"></div>
+        </div>
       </div>
+
       <a href="#about" class="about-link">About</a>
     </header>
 
-    <!-- TITLEBOX -->
+    <!-- =========================
+         TITLE / PROJECT NAV
+    ========================== -->
     <section class="titlebox">
       <div class="track">
         <div class="project" data-slug="scrollytelling">
@@ -70,7 +82,9 @@
       </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- =========================
+         GALLERY
+    ========================== -->
     <section class="gallery">
       <div class="gallery-track">
         <div
@@ -117,10 +131,13 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- =========================
+         ABOUT
+    ========================== -->
     <section class="about" id="about">
       <div class="about-inner">
         <div id="about-canvas"></div>
+
         <div class="about-image">
           <img src="images/Thomas.jpg" alt="Thomas Schaad" />
         </div>
@@ -132,7 +149,7 @@
             Zimmermann, Theologiestudent, Designer und Datenvisualisierer. Ich
             bewege mich zwischen Handwerk und digitaler Gestaltung – überall
             dort, wo ästhetische Form entsteht, beginne ich zu denken und zu
-            entwerfen. Daraus entsteht ein vielseitiges Portfolio an
+            entwerfen. Daraus entsteht ein vielseitiges Portfolio aus
             konzeptionellen und künstlerischen Arbeiten. Mein gestalterisches
             Denken arbeitet mit Metaphern, Geschichten und abstrakten Bildern
             jenseits rein sprachlicher oder rationaler Zugänge. Ich übersetze
@@ -144,15 +161,18 @@
             "Im Spannungsfeld zwischen Data Design und Art, Digital und Analog,
             bin ich zuhause"
           </p>
+
           <p class="contact">
             <span class="arrow">→</span>
-            <a href="mailto:thom.schaad@proton.me">thom.schaad@proton.me</a>
+            <a href="mailto:thom.schaad@proton.me"> thom.schaad@proton.me </a>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- PROJECT VIEW -->
+    <!-- =========================
+         PROJECT VIEW
+    ========================== -->
     <section class="project-view">
       <div class="project-content">
         <h1 class="project-title"></h1>
@@ -161,6 +181,9 @@
       </div>
     </section>
 
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
     <script src="script.js"></script>
   </body>

@@ -1,6 +1,10 @@
 let progress = 0;
 let mode = "gallery"; // "gallery" | "map"
+let isOn = false;
 
+// =========================
+// p5 SETUP
+// =========================
 function setup() {
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("onboarding-canvas");
@@ -10,73 +14,140 @@ function setup() {
   noFill();
 }
 
+// =========================
+// MAIN LOOP
+// =========================
 function draw() {
   clear();
 
-  let cols = 12;
-  let rows = 12;
+  const cols = 12;
+  const rows = 12;
 
-  let spacingX = width / cols;
-  let spacingY = height / rows;
+  const spacingX = width / cols;
+  const spacingY = height / rows;
 
-  // =========================
-  // MAP MODE (STABIL)
-  // =========================
   if (mode === "map") {
-    drawGridMap();
-    return; // 👈 WICHTIG: alles andere stoppen
+    renderMap(cols, rows, spacingX, spacingY);
+  } else {
+    renderGallery(cols, rows, spacingX, spacingY);
   }
+}
 
-  // =========================
-  // GALLERY MODE (ANIMATION)
-  // =========================
-  progress += 0.02;
-  progress = constrain(progress, 0, 1);
+// =========================
+// GALLERY VIEW
+// =========================
+function renderGallery(cols, rows, spacingX, spacingY) {
+  progress = constrain(progress + 0.02, 0, 1);
+  const eased = easeOutCubic(progress);
 
-  let eased = easeOutCubic(progress);
-
-  // VERTIKALE LINIEN
   for (let i = 0; i <= cols; i++) {
-    let x = i * spacingX;
+    const x = i * spacingX;
 
     beginShape();
-
     for (let y = -40; y <= height + 40; y += 20) {
-      let n = noise(x * 0.01, y * 0.01);
-      let distortedX = x + map(n, 0, 1, -60, 60);
-      let finalX = lerp(distortedX, x, eased);
-      curveVertex(finalX, y);
+      const n = noise(x * 0.01, y * 0.01);
+      const offsetX = x + map(n, 0, 1, -60, 60);
+      curveVertex(lerp(offsetX, x, eased), y);
     }
-
     endShape();
   }
 
-  // HORIZONTALE LINIEN
   for (let i = 0; i <= rows; i++) {
-    let y = i * spacingY;
+    const y = i * spacingY;
 
     beginShape();
-
     for (let x = -40; x <= width + 40; x += 20) {
-      let n = noise(x * 0.01, y * 0.01);
-      let distortedY = y + map(n, 0, 1, -60, 60);
-      let finalY = lerp(distortedY, y, eased);
-      curveVertex(x, finalY);
+      const n = noise(x * 0.01, y * 0.01);
+      const offsetY = y + map(n, 0, 1, -60, 60);
+      curveVertex(x, lerp(offsetY, y, eased));
     }
-
     endShape();
   }
 }
 
-// 👉 Smooth easing
+// =========================
+// MAP VIEW
+// =========================
+function renderMap(cols, rows, spacingX, spacingY) {
+  stroke(255, 160);
+  strokeWeight(1);
+  noFill();
+
+  for (let i = 0; i <= cols; i++) {
+    const x = i * spacingX;
+    line(x, 0, x, height);
+  }
+
+  for (let i = 0; i <= rows; i++) {
+    const y = i * spacingY;
+    line(0, y, width, y);
+  }
+}
+
+// =========================
+// TOGGLE (UI OVERLAY)
+// =========================
+function renderToggle() {
+  const x = width - 120;
+  const y = 10;
+
+  push();
+
+  stroke(0);
+  strokeWeight(1);
+
+  fill(isOn ? 0 : 255);
+  rect(x, y, 60, 24, 12);
+
+  noStroke();
+  fill(isOn ? 255 : 0);
+  circle(isOn ? x + 48 : x + 12, y + 12, 18);
+
+  pop();
+}
+
+// =========================
+// INPUT
+// =========================
+function mousePressed() {
+  const x = width - 120;
+  const y = 10;
+
+  const clicked =
+    mouseX > x && mouseX < x + 60 && mouseY > y && mouseY < y + 24;
+
+  if (!clicked) return;
+
+  isOn = !isOn;
+  mode = isOn ? "map" : "gallery";
+  progress = 0;
+
+  updateToggleLabel();
+}
+
+// =========================
+// UI STATE
+// =========================
+function updateToggleLabel() {
+  const label = document.getElementById("toggle-label");
+  if (label) {
+    label.textContent = isOn ? "MAP" : "GALLERY";
+  }
+}
+
+// =========================
+// EASING
+// =========================
 function easeOutCubic(t) {
   return 1 - pow(1 - t, 3);
 }
 
+// =========================
+// RESIZE
+// =========================
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
-
 // =====================
 // PROJECT DATA
 // =====================
@@ -89,10 +160,12 @@ const projectData = [
       {
         type: "video",
         src: "images/scrollytelling-01.mp4",
+        size: "large",
       },
       {
         type: "image",
         src: "images/scrollytelling-02.jpg",
+        size: "large",
       },
       {
         type: "image",
@@ -106,6 +179,34 @@ const projectData = [
         type: "image",
         src: "images/scrollytelling-05.jpg",
       },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-06.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-07.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-08.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-09.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-10.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-11.jpg",
+      //   },
+      //   {
+      //     type: "image",
+      //     src: "images/scrollytelling-12.jpg",
+      //   },
     ],
   },
   {
@@ -140,6 +241,10 @@ const projectData = [
       {
         type: "image",
         src: "images/sdg09-07.jpg",
+      },
+      {
+        type: "image",
+        src: "images/sdg09-08.jpg",
       },
     ],
   },
@@ -219,10 +324,10 @@ const projectData = [
         type: "image",
         src: "images/data-sculpture-01.jpg",
       },
-      {
-        type: "image",
-        src: "images/data-sculpture-02.jpg",
-      },
+      //   {
+      //     type: "image",
+      //     src: "images/data-sculpture-02.jpg",
+      //   },
       {
         type: "image",
         src: "images/data-sculpture-03.jpg",
@@ -263,6 +368,14 @@ const projectData = [
         type: "image",
         src: "images/data-sculpture-13.jpg",
       },
+      {
+        type: "image",
+        src: "images/data-sculpture-14.jpg",
+      },
+      {
+        type: "image",
+        src: "images/data-sculpture-15.jpg",
+      },
     ],
   },
   {
@@ -286,6 +399,26 @@ const projectData = [
         type: "image",
         src: "images/code-patterns-04.jpg",
       },
+      //   {
+      //     type: "image",
+      //     src: "images/code-patterns-05.jpg",
+      //   },
+      {
+        type: "image",
+        src: "images/code-patterns-06.jpg",
+      },
+      {
+        type: "image",
+        src: "images/code-patterns-07.jpg",
+      },
+      {
+        type: "image",
+        src: "images/code-patterns-08.jpg",
+      },
+      {
+        type: "image",
+        src: "images/code-patterns-09.jpg",
+      },
     ],
   },
   {
@@ -295,7 +428,7 @@ const projectData = [
     media: [
       {
         type: "image",
-        src: "images/the-armor-02.jpg",
+        src: "images/the-armor-01.jpg",
       },
       {
         type: "image",
@@ -307,11 +440,23 @@ const projectData = [
       },
       {
         type: "image",
+        src: "images/the-armor-02.jpg",
+      },
+      {
+        type: "image",
         src: "images/the-armor-05.jpg",
       },
       {
         type: "image",
         src: "images/the-armor-06.jpg",
+      },
+      {
+        type: "image",
+        src: "images/the-armor-07.jpg",
+      },
+      {
+        type: "image",
+        src: "images/the-armor-08.jpg",
       },
     ],
   },
@@ -367,21 +512,19 @@ const projectTitle = document.querySelector(".project-title");
 const projectText = document.querySelector(".project-text");
 
 const projectGallery = document.querySelector(".project-gallery");
-const toggles = document.querySelectorAll(".toggle");
+const toggle = document.querySelector(".toggle");
+const toggleLabel = document.getElementById("toggle-label");
 
-toggles.forEach((toggle, index) => {
-  toggle.addEventListener("click", () => {
-    toggles.forEach((t) => t.classList.remove("active"));
-    toggle.classList.add("active");
+toggle.addEventListener("click", () => {
+  isOn = !isOn;
 
-    if (index === 1) {
-      mode = "map";
-    } else {
-      mode = "gallery";
-    }
+  toggle.classList.toggle("active", isOn);
 
-    progress = 0; // 👈 WICHTIG: RESET
-  });
+  mode = isOn ? "map" : "gallery";
+
+  toggleLabel.textContent = isOn ? "MAP" : "GALLERY";
+
+  progress = 0;
 });
 
 // =====================
@@ -651,4 +794,16 @@ function handleSwipe() {
   setTimeout(() => {
     isScrolling = false;
   }, 1200);
+}
+if (item.type === "image") {
+  const img = document.createElement("img");
+  img.src = item.src;
+  img.classList.add("gallery-media");
+
+  // 👇 zusätzliche Klasse
+  if (item.size) {
+    img.classList.add(item.size);
+  }
+
+  projectGallery.appendChild(img);
 }
